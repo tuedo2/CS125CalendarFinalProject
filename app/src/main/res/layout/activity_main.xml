@@ -340,6 +340,34 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="31" />
+
+                    <Button
+                        android:id="@+id/day32"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="32" />
+
+                    <Button
+                        android:id="@+id/day33"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="33" />
+
+                    <Button
+                        android:id="@+id/day34"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="34" />
+
+                    <Button
+                        android:id="@+id/day35"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="35" />
                 </LinearLayout>
             </android.support.constraint.ConstraintLayout>
 
