@@ -22,15 +22,13 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout weekThreeLayout = findViewById(R.id.calendar_week_3);
         LinearLayout weekFourLayout = findViewById(R.id.calendar_week_4);
         LinearLayout weekFiveLayout = findViewById(R.id.calendar_week_5);
-        LinearLayout weekSixLayout = findViewById(R.id.calendar_week_6);
 
-        LinearLayout[] weeks = new LinearLayout[6];
+        LinearLayout[] weeks = new LinearLayout[5];
         weeks[0] = weekOneLayout;
         weeks[1] = weekTwoLayout;
         weeks[2] = weekThreeLayout;
         weeks[3] = weekFourLayout;
         weeks[4] = weekFiveLayout;
-        weeks[5] = weekSixLayout;
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
