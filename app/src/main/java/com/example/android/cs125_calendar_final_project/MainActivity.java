@@ -13,7 +13,13 @@ import android.widget.TextView;
 
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Map;
 
 /**
@@ -24,7 +30,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     /** Maps all dates to JSON strings */
-    private Map<Date, String> allData;
+    private Map<GregorianCalendar, String> allData;
 
     /** The big calendar thing. */
     private CalendarView mainView = findViewById(R.id.mainView);
@@ -35,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
     /** The save button. */
     private Button saveButton = findViewById(R.id.saveButton);
 
-    private Date currentDate;
+    private GregorianCalendar currentDate;
+
+    //private DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,19 +56,16 @@ public class MainActivity extends AppCompatActivity {
         eventText = findViewById(R.id.eventList);
         saveButton = findViewById(R.id.saveButton);
 
-        /** Replace the new Date constructer with something that gives the currently selected date. */
+        /** Replace the new Date constructor with something that gives the currently selected date. */
         saveButton.setOnClickListener((v) -> saveText(currentDate, eventText.getText().toString()));
 
         /**
          * Sets the private variable "currentDate" to the selected date whenever you select a new
          * date.
          */
-        mainView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
-                currentDate = new Date(year, month, day);
-                getText(currentDate);
-            }
+        mainView.setOnDateChangeListener((mainView, year, month, date) -> {
+            currentDate = new GregorianCalendar(year, month, date);
+            getText(currentDate);
         });
 
         /**
@@ -78,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
      * @param currentDate the date being saved
      * @param toSave text of the display (unparsed)
      */
-    public void saveText(Date currentDate, String toSave) {
+    public void saveText(GregorianCalendar currentDate, String toSave) {
         if (currentDate == null || toSave.equals("")) {
             return;
         }
@@ -90,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
      * defaults to an empty String.
      * @param currentDate the date being called
      */
-    public void getText(Date currentDate) {
+    public void getText(GregorianCalendar currentDate) {
         eventText.setText(allData.getOrDefault(currentDate, ""));
     }
 }
