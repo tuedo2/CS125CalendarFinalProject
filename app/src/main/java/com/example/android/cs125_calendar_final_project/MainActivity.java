@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Widget stuff.
          */
-        CalendarView mainView = findViewById(R.id.mainView);
-        TextView eventText = findViewById(R.id.eventList);
-        Button saveButton = findViewById(R.id.saveButton);
+        mainView = findViewById(R.id.mainView);
+        eventText = findViewById(R.id.eventList);
+        saveButton = findViewById(R.id.saveButton);
 
         /** Replace the new Date constructer with something that gives the currently selected date. */
         saveButton.setOnClickListener((v) -> saveText(currentDate, eventText.getText().toString()));
@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
                 currentDate = new Date(year, month, day);
+                getText(currentDate);
             }
         });
 
