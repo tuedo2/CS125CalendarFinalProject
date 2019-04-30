@@ -1,6 +1,7 @@
 package com.example.android.cs125_calendar_final_project;
 
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     /** The save button. */
     private Button saveButton = findViewById(R.id.saveButton);
 
+    private Date currentDate;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +49,18 @@ public class MainActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.saveButton);
 
         /** Replace the new Date constructer with something that gives the currently selected date. */
-        saveButton.setOnClickListener((v) -> saveText(new Date(119, 4, 29), eventText.getText().toString()));
+        saveButton.setOnClickListener((v) -> saveText(currentDate, eventText.getText().toString()));
+
+        /**
+         * Sets the private variable "currentDate" to the selected date whenever you select a new
+         * date.
+         */
+        mainView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int day) {
+                currentDate = new Date(year, month, day);
+            }
+        });
 
         /**
          * Default stuff.
@@ -64,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * @param toSave text of the display (unparsed)
      */
     public void saveText(Date currentDate, String toSave) {
-        if (toSave == null || toSave.equals("")) {
+        if (currentDate == null || toSave.equals("")) {
             return;
         }
         allData.put(currentDate, toSave);
