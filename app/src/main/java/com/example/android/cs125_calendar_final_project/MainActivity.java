@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function sets the "eventView" text field to either the text saved at the current date or
      * defaults to an empty String.
-     *
-     * Can we make it so you don't have to manually delete "Editable!" every time?
      * @param currentDate the date being called
      */
     public void getText(GregorianCalendar currentDate) {
