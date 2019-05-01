@@ -1,49 +1,35 @@
 package com.example.android.cs125_calendar_final_project;
 
-import android.graphics.Color;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.json.JSONObject;
-
-import java.text.DateFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * Here's the idea: you can click on one of the dates in mainView (the calendar) and then each day
  * has it's own editable text. When you click the "save" button the text is saved for that day and
- * you can reaccess it. That's pretty much it.
+ * you can re-access it. That's pretty much it.
  */
 
 public class MainActivity extends AppCompatActivity {
     /** Maps all dates to JSON strings */
-    private Map<GregorianCalendar, String> allData;
+    private Map<GregorianCalendar, String> allData = new HashMap<>();
 
     /** The big calendar thing. */
-    private CalendarView mainView = findViewById(R.id.mainView);
+    private CalendarView mainView;
 
     /** The editable text. */
-    private TextView eventText = findViewById(R.id.eventList);
+    private TextView eventText;
 
     /** The save button. */
-    private Button saveButton = findViewById(R.id.saveButton);
+    private Button saveButton;
 
     private GregorianCalendar currentDate;
-
-    //private DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.SHORT);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
      * This function is called when the "Save" button is clicked. It assigns text to a map with the
      * key of the date of the map.
      * @param currentDate the date being saved
-     * @param toSave text of the display (unparsed)
+     * @param toSave text of the display
      */
     public void saveText(GregorianCalendar currentDate, String toSave) {
         if (currentDate == null || toSave.equals("")) {
@@ -93,6 +79,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * This function sets the "eventView" text field to either the text saved at the current date or
      * defaults to an empty String.
+     *
+     * Can we make it so you don't have to manually delete "Editable!" every time?
      * @param currentDate the date being called
      */
     public void getText(GregorianCalendar currentDate) {
